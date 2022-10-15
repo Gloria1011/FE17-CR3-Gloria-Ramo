@@ -1,0 +1,74 @@
+<div class="container py-5 gx-5">
+
+    <div class="row py-5">
+        <div class="card col-6 m-2">
+            <div class="card-header">
+                <h3> Card {{orderedProducts.length}} item(s)</h3>
+            </div>
+            <div class="content d-flex justify-content-evenly mx-2 p-3" *ngFor="let product of orderedProducts">
+                <img style="width:120px"
+                    src="{{product.image}}"
+                    alt="cheesecak dessert">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.title}}</h5>
+                    <p class="card-text">{{product.ingredients}}</p>
+                </div>
+                <strong>{{product.price}}</strong>
+                <hr>
+            </div>
+
+        </div>
+
+        <div class="card col-4 m-2">
+            <div class="card-header">
+                <h3>Summary</h3>
+            </div>
+            <div class="content d-flex justify-content-evenly mx-2">
+
+                <div class="card-body">
+                    <p class="card-text">Price</p>
+                    <p class="card-text">Service</p>
+                    <p class="card-text">Discounts</p>
+                </div>
+                <div class="card-body">
+                    <p>{{totalPrice}}</p>
+                    <p>{{service}}</p>
+                    <p>{{discount}}%</p>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-evenly">
+                <div class="card-body">
+                <strong class="card-text">Totall amount including VAT</strong>
+        </div>
+        <div class="card-body">
+                <strong *ngIf="orderedProducts.length">{{totalPriceCalc() | currency}}</strong>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <h2>Order form</h2>
+    <p>please fill up the info for the delievery</p>
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" class="form-control" id="username" formControlName="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Address</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

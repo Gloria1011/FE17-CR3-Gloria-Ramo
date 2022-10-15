@@ -1,0 +1,31 @@
+
+<div class="container py-5">
+
+    <h1>{{pageTitle}}</h1>
+
+<div class="row gx-5">
+
+    <div class=" col-md-4" *ngFor="let product of resturantMenuList">
+        <div class="m-3 card">
+            <img src={{product.image}} class="card"/>
+            <div class="card-body">
+              <h5 class="card-title"> {{product.title}}</h5>
+              <p class="card-text"> {{product.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{product.price}}</li>
+            </ul>
+            <div class="card-body" *ngIf="product.availability; else warningMessage">
+                <a [routerLink]="'/details'" class="btn m-1 btn-primary" (click)="passDetails(product)">Details</a>
+                <a [routerLink]="'/cart'" class="btn m-1 btn-success" (click)="createOrder(product)">Order</a>
+            </div>
+        </div>
+
+        <ng-template #warningMessage >
+            <p class="p-3 text-danger">This product is not available !</p>
+          </ng-template>
+
+    </div>
+</div>
+
+</div>
